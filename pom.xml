@@ -3,18 +3,24 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.gaellalire.vestige_app.mywar</groupId>
   <artifactId>mywar</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <packaging>war</packaging>
   <dependencies>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>5.0.0</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.logic.servlet</groupId>
+      <artifactId>servlet-fragment-framework</artifactId>
+      <version>1.0</version>
     </dependency>
   </dependencies>
   <build>
@@ -28,4 +34,82 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>deploy-vestige-descriptors</id>
+      <activation>
+        <property>
+          <name>env.TOMCAT_WEBAPPS_PATH</name>
+        </property>
+      </activation>
+      <properties>
+        <tomcat.webapps.path>${env.TOMCAT_WEBAPPS_PATH}</tomcat.webapps.path>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>fr.gaellalire.vestige</groupId>
+            <artifactId>vestige.plugin.verify</artifactId>
+            <version>1.1.1</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>create-verification-metadata</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <verifications>
+                    <verification>
+                      <verifyFile>${basedir}/src/main/config/verify.xml</verifyFile>
+                      <mavenPropertyName>verificationMetadata</mavenPropertyName>
+                    </verification>
+                  </verifications>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>deploy-vestige-app</id>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <resources>
+                    <resource>
+                      <directory>${basedir}/src/main/config</directory>
+                      <include>mywar.vwar</include>
+                      <filtering>true</filtering>
+                    </resource>
+                  </resources>
+                  <outputDirectory>${tomcat.webapps.path}</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>skip-deploy</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>default-deploy</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
