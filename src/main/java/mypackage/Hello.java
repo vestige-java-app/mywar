@@ -1,6 +1,9 @@
 package mypackage;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -17,6 +20,14 @@ public class Hello extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         writer.println("hello");
         writer.println(IOUtils.class);
+        InputStream inputStream = Hello.class.getResourceAsStream("myresource.txt");
+        if (inputStream != null) {
+            try {
+                writer.println(new BufferedReader(new InputStreamReader(inputStream)).readLine());
+            } finally {
+                inputStream.close();
+            }
+        }
     }
 
 }

@@ -1,3 +1,4 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <HTML>
 <HEAD>
 <TITLE>Test</TITLE>
@@ -10,10 +11,10 @@
             return val2;
     }%>
 	<%
-	    int petit = minimum(Integer.parseInt(request.getParameter("max")) , 3);
+	    int min = minimum(Integer.parseInt(request.getParameter("n1")), Integer.parseInt(request.getParameter("n2")));
 	%>
 	<p>
-		Le plus petit de 5 et 3 est
-		<%=petit%></p>
+		The minimum between <c:out value="${param.n1}" /> and <c:out value="${param.n2}" /> is
+		<%=min%></p>
 </BODY>
 </HTML>
