@@ -15,6 +15,8 @@ import org.apache.commons.io.IOUtils;
 
 public class Hello extends HttpServlet {
 
+    private static final long serialVersionUID = -8378070660296513701L;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
