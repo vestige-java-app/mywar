@@ -1,7 +1,7 @@
 <verify xmlns="http://gaellalire.fr/vestige/VERIFY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://gaellalire.fr/vestige/VERIFY http://gaellalire.fr/vestige/verify-1.0.0.xsd">
+  xsi:schemaLocation="http://gaellalire.fr/vestige/VERIFY http://gaellalire.fr/vestige/verify-1.1.0.xsd">
   <attachment>
-    <mavenResolver groupId="fr.gaellalire.vestige_app.mywar" artifactId="mywar" version="0.0.1" extension="war" />
+    <mavenResolver groupId="fr.gaellalire.vestige_app.mywar" artifactId="mywar" version="0.0.1" extension="war" classifier="exploded-assembly" />
   </attachment>
   <configurations>
     <mavenConfig>
