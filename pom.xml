@@ -36,7 +36,7 @@
         <plugin>
           <groupId>fr.gaellalire</groupId>
           <artifactId>jar_exploder_plugin</artifactId>
-          <version>1.0.0</version>
+          <version>1.0.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
