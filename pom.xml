@@ -84,6 +84,21 @@
       </plugin>
     </plugins>
   </build>
+  <distributionManagement>
+    <repository>
+      <id>gaellalire_nexus</id>
+      <url>http://gaellalire.fr/nexus/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>gaellalire_nexus</id>
+      <url>http://gaellalire.fr/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+  <scm>
+    <connection>scm:git:git@gaellalire.fr:vestige_app/mywar.git</connection>
+    <developerConnection>scm:git:git@gaellalire.fr:vestige_app/mywar.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
   <profiles>
     <profile>
       <id>deploy-vestige-descriptors</id>
