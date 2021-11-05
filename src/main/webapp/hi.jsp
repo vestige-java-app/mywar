@@ -1,4 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://gaellalire.fr/jsp/my" prefix = "my" %>
 <HTML>
 <HEAD>
 <TITLE>Test</TITLE>
@@ -16,5 +17,6 @@
 	<p>
 		The minimum between <c:out value="${param.n1}" /> and <c:out value="${param.n2}" /> is
 		<%=min%></p>
+	<p> Intern taglib call : <c:out value="${my:hello()}"/> </p>
 </BODY>
 </HTML>

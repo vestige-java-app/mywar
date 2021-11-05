@@ -22,7 +22,8 @@ public class Hello extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         writer.println("hello");
         writer.println(Hello.class.getClassLoader().getResource(IOUtils.class.getName().replace('.', '/').concat(".class")));
-        writer.println(IOUtils.class.getClassLoader());
+        ClassLoader classLoader = IOUtils.class.getClassLoader();
+        writer.println(System.identityHashCode(classLoader) + " " + classLoader);
         InputStream inputStream = Hello.class.getResourceAsStream("myresource.txt");
         if (inputStream != null) {
             try {
