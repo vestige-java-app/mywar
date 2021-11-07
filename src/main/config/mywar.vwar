@@ -4,8 +4,8 @@ xsi:schemaLocation="http://tomcat.apache.org/VWAR vwar-1.0.0.xsd" javaSpecificat
   <launcher>
     <mavenResolver groupId="${project.groupId}" artifactId="${project.artifactId}" version="${project.version}" classifier="exploded-assembly">
       <attachDependencies>
-        <excludeWithParents groupId="javax.servlet" artifactId="javax.servlet-api"/>
-        <excludeWithParents groupId="javax.servlet" artifactId="jstl"/>
+        <excludeWithParents groupId="jakarta.servlet" artifactId="jakarta.servlet-api"/>
+        <excludeWithParents groupId="jakarta.servlet.jsp.jstl" artifactId="jakarta.servlet.jsp.jstl-api"/>
       </attachDependencies>    
     </mavenResolver>
     <verificationMetadata>
