@@ -69,6 +69,9 @@
       </plugin>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <recompressZippedFiles>false</recompressZippedFiles>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>fr.gaellalire</groupId>
